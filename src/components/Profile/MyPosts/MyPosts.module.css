@@ -1,0 +1,21 @@
+.posts{
+    background:#DCDCDC;
+    text-align: center;
+}
+.text textarea{
+    width: 60%;
+    height: 40px;
+    background: white;
+
+}
+
+.posts button{
+        height: 30px;
+
+}
+.posts textarea{
+    padding-bottom: 30px;
+}
+.postItem{
+    padding-top: 100px;
+}

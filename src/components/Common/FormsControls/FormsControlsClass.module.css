@@ -1,0 +1,28 @@
+.formControl.error input,
+.formControl.error textarea
+{
+    border: solid red 2px;
+}
+
+.formControl.error span
+{
+    color: red;
+    text-align: center;
+}
+
+.formSummaryError {
+    border: solid black  2px;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    margin: 0 auto;
+    background: rgba(241, 6, 6, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(241, 6, 6,0.5);
+    font-family: monospace;
+}
+.loginForm{
+    text-align: center;
+}

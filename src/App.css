@@ -1,0 +1,28 @@
+body{
+  background: rgb(114, 112, 112);
+}
+.app-wrapper {
+display: grid;
+width: 1200px;
+margin: 0 auto;
+grid-template-areas:
+ "h h"
+ "n c";
+grid-template-rows: 60px 1fr;
+grid-template-columns: 2fr 10fr;
+grid-gap: 10px;
+    height: 100vh;
+}
+
+.avatarProfile{
+    display: flex;
+}
+
+.avatarProfile p, .avatarProfile h2{
+    margin-left: 20px;
+}
+
+.app-wrapper-content{
+    background:linear-gradient(#696969,#DCDCDC);
+  grid-area: c;
+}

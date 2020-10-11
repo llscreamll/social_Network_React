@@ -1,0 +1,29 @@
+.pageUsers{
+    background:linear-gradient(#696969,#DCDCDC);
+}
+.usersPage{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.users{
+    padding: 30px;
+
+}
+
+.statusPage{
+    padding: 0px 0px 10px 0px;
+    width: 120px;
+    font-style: italic;
+    font-size: 15px;
+    word-break: normal;
+    overflow: hidden
+
+}
+.usersBorder{
+    border: 2px solid grey;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    background: #DCDCDC;
+    padding: 10px 20px 20px 20px
+}

@@ -1,0 +1,31 @@
+.nav{
+    grid-area: n;
+    background: rgba(7, 20, 117,0.5);
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid black;
+    height: 98%;
+}
+
+.item{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: 0.5s all;
+}
+
+.item:hover{
+    color: gold;
+
+}
+.item.activeLink {
+    color: gold;
+}
+
+
+
+.friendsOption{
+    margin-top: 100px;
+    padding: 10px;
+    display: flex;
+}

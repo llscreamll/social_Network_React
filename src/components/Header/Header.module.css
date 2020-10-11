@@ -1,0 +1,21 @@
+.header{
+  width: 100%;
+    grid-area: h;
+    background-image: url(../images/logoHeader.jpg);
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.header img{
+    width : 60px;
+    padding-left: 20px;
+}
+.loginBlock{
+    color: white;
+    padding: 20px;
+    float: right;
+
+}
+.loginBlock a {
+    color: #e5d10d;
+}

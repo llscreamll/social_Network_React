@@ -1,0 +1,38 @@
+.post{
+
+    display: flex;
+    padding: 20px;
+}
+.post img{
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.messagePost{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+}
+.messagePost p {
+    min-height: 100px;
+    width: 100%;
+    text-align: left;
+    background: #ffffff;
+    border-radius: 10px;
+    font-style: italic;
+    font-size: 20px;
+    padding-left: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.messagePost button{
+    float: right;
+}
+.deleteButton{
+    margin-right: 10px;
+    font-family: monospace;
+    background: rgba(227, 18, 45,0.1);
+    transition: 1s all;
+}
+.deleteButton:hover{
+    background: red;
+}

@@ -1,0 +1,55 @@
+.paginator{
+    display: flex;
+    padding: 20px;
+    position: relative;
+
+
+}
+.pageNumber{
+    text-align: center;
+    width: 33px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 5px;
+    transition: 0.5s all;
+    cursor: pointer;
+    border: 1px solid black;
+    background: rgb(200,200,200);
+
+
+}
+.pageNumber:hover{
+    transform: scale(1.4);
+}
+
+.selectedPage{
+    text-align: center;
+    width: 33px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 5px;
+    transition: 0.5s all;
+    cursor: pointer;
+    border: 1px solid black;
+    background: rgba(65, 133, 14,0.5)
+}
+
+.buttonClick{
+    position: absolute;
+    top: 70px;
+    font-family: monospace;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s all;
+
+}
+.buttonClick:hover{
+    background: rgba(65, 133, 14,0.5)
+}
+.buttonLeft{
+    left: 20px;
+}
+
+.buttonRight{
+    right: 20px;
+}
