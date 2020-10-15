@@ -1,4 +1,4 @@
-import {getUsersThunk, follow, unFollow,} from "../../redux/users-reducer";
+import {getUsersThunk, follow, unFollow, FilterType,} from "../../redux/users-reducer";
 import style from "./Users.module.css"
 import React from "react";
 import Users from "./Users";
@@ -10,7 +10,8 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUserCount,
-    getUsers
+    getUsers,
+    getUsersFilter
 } from "../../redux/users-selectors";
 import {UserType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
@@ -25,11 +26,13 @@ type MapStateToPropsType = {
     totalUserCount: number
     users: Array<UserType>
     followingProgress: Array<number>
+    filter: FilterType
 }
 type mapDispatchToPropsType = {
-    getUsersThunk: (currentPage: number, pageSize: number) => void
+    getUsersThunk: (currentPage: number, pageSize: number,filter:FilterType) => void
     follow: (UserId: number) => void
     unFollow: (UserId: number) => void
+
 }
 type OwnPropsType = {
     pageTitle: string
@@ -41,14 +44,22 @@ class UsersContainer extends React.Component<propsType> {
 
 
     componentDidMount() {
-        const {currentPage, pageSize} = this.props;
-        this.props.getUsersThunk(currentPage, pageSize);
+
+        const {currentPage, pageSize,filter} = this.props;
+
+       this.props.getUsersThunk(currentPage,pageSize,filter);
 
     }
 
     onPageChanged = (pageNumber: number) => {
-        const {pageSize} = this.props;
-        this.props.getUsersThunk(pageNumber, pageSize);
+
+        const {pageSize,filter} = this.props;
+        this.props.getUsersThunk(pageNumber, pageSize,filter);
+    }
+
+    onFilterChanged = (filter : FilterType) =>{
+        const { pageSize} = this.props;
+        this.props.getUsersThunk(1, pageSize,filter);
     }
 
     render() {
@@ -65,6 +76,7 @@ class UsersContainer extends React.Component<propsType> {
                        follow={this.props.follow}
                        unFollow={this.props.unFollow}
                        isAuth={this.props.isAuth}
+                       onFilterChanged={this.onFilterChanged}
                 />
             </div>
         </>
@@ -80,9 +92,11 @@ let mapStateProps = (state: AppStateType): MapStateToPropsType => {
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingProgress: getFollowingInProgress(state),
-        isAuth: getIsAuth(state)
+        isAuth: getIsAuth(state),
+        filter: getUsersFilter(state)
     }
 }
+
 
 export default compose(
     //  <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState>
