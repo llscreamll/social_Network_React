@@ -1,2 +1,0 @@
-(this["webpackJsonpmy-site"]=this["webpackJsonpmy-site"]||[]).push([[7],{291:function(e,n,t){"use strict";t.r(n),t.d(n,"default",(function(){return s}));var a=t(0),l=t.n(a);function s(){return l.a.createElement("div",null,l.a.createElement("h1",null,"News:"),l.a.createElement("p",null,"in the development..."),l.a.createElement("div",{className:"display-none"},"123"))}}}]);
-//# sourceMappingURL=7.8c275ae4.chunk.js.map
