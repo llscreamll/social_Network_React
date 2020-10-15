@@ -5,6 +5,8 @@
     background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
+    box-shadow: 1px 1px 5px 2px rgb(0, 1, 14);
+    border-radius: 0px 0px 10px 10px;
 }
 .header img{
     width : 60px;
@@ -17,5 +19,17 @@
 
 }
 .loginBlock a {
-    color: #e5d10d;
+    font-family: Chiller;
+    font-size: 30px;
+    color: white;
+}
+.loginBlock a:hover {
+    color: gold;
+}
+audio{
+    width: 200px;
+    height: 20px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    outline:none;
 }

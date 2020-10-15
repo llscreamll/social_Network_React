@@ -47,7 +47,7 @@ let MyProfileInfo : React.FC<MyProfileInfoType> = (props) => {
             <div className={style.profileInfoStatus}>
                 <div>
                     <img className={style.imgUser}
-                         src={props.profile.photos?.large !== null ? props.profile.photos?.small : avatarImages}
+                         src={props.profile.photos?.large as string !== null  ? props.profile.photos?.small as string : avatarImages}
                          alt="img" />
 
                 </div>

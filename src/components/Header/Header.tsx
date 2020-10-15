@@ -16,8 +16,9 @@ const Header: React.FC<HeaderType> = (props) => {
     return (
         <header className={style.header}>
             <img src={logo} alt="logo" />
+            <audio src="http://air.radiorecord.ru:8101/rr_320" autoPlay={false} controls={true}></audio>
             <div className={style.loginBlock}>
-                {(props.isAuth === false) ?  <NavLink to={'/login'}>Login</NavLink> :  <div>{props.login} <button onClick={props.logout}>Выход</button> </div>}
+                {(props.isAuth === false) ?  <NavLink to={'/login'}><div className={style.loginStyle}>Login</div></NavLink> :  <div>{props.login} <button onClick={props.logout}>Выход</button> </div>}
 
              </div>
         </header>

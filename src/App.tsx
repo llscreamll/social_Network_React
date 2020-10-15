@@ -37,6 +37,7 @@ let App : React.FC<MapStateType & MapDispatchType> =(props)=> {
             <div className="app-wrapper-content">
 
                 <Route exact path="/"> {props.isAuth ? <Redirect to={"/profile"}/>  : <Redirect to={"/login"}/>} </Route>
+                <Route exact path="/social_Network_React/"> {props.isAuth ? <Redirect to={"/profile"}/>  : <Redirect to={"/login"}/>} </Route>
 
                 <Route path="/profile/:userId?" >  <ProfileContainer /> </Route>
 

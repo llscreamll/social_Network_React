@@ -38,10 +38,12 @@ const maxLength20 = maxLengthCreator(20)
 let LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormsOwnProps> & LoginFormsOwnProps> = ({handleSubmit, error, captchaUrl}) => {
     return (
 
+
+
         <form onSubmit={handleSubmit}>
             <div>
-                {createField<LoginFormValuesTypeKeys>("email", "email", [required], Input)}
-                {createField<LoginFormValuesTypeKeys>("password", "password", [required, maxLength20], Input, {type: "password"})}
+                {createField<LoginFormValuesTypeKeys>("Email: free@samuraijs.com", "email", [required], Input)}
+                {createField<LoginFormValuesTypeKeys>("Password: free", "password", [required, maxLength20], Input, {type: "password"})}
                 {createField<LoginFormValuesTypeKeys>(undefined, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
             </div>
 

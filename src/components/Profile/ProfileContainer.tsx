@@ -56,11 +56,8 @@ const ProfileContainer: React.FC<MapStateToPropsType & ProfileContainerType & Ro
                 props.history.push("/login")
             }
         }
-        if(!userId) {
-            throw new Error(`ID should be exist ${props.authorizedUserId}`)
-        }
-            props.getUsersProfiles(userId)
-            props.getStatusProfileThunk(userId)
+            props.getUsersProfiles(userId as number)
+            props.getStatusProfileThunk(userId as number)
 
     }
 

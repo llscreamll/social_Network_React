@@ -1,15 +1,16 @@
 import {BaseThunkType, PropertiesTypes, UserType} from "../types/types";
 import {usersAPI} from "../api/users-api";
+import {Dispatch} from "redux";
+import {ApiResponseType} from "../api/api";
 
 
-
-type initialStateType = typeof initialState;
+export type initialStateType = typeof initialState;
 type ActionsTypes = ReturnType<PropertiesTypes<typeof actions>>
 
 type ThunkType = BaseThunkType<ActionsTypes>
 
 
-let initialState = {
+ let initialState = {
     users: [] as Array<UserType>,
     pageSize: 32,
     totalUserCount: 0,
@@ -19,7 +20,7 @@ let initialState = {
 
 };
 
-let usersReducer = (state = initialState, action: ActionsTypes): initialStateType => {
+export let usersReducer = (state = initialState, action: ActionsTypes): initialStateType => {
 
     switch (action.type) {
         case 'TOGGLE_FOLLOW':
@@ -61,7 +62,7 @@ let usersReducer = (state = initialState, action: ActionsTypes): initialStateTyp
 
 }
 
-const actions = {
+export const actions = {
     followToggle: (userID: number) => ({type: 'TOGGLE_FOLLOW', userID} as const),
     setUsers: (users: Array<UserType>) => ({type: 'SET_USERS', users} as const),
     setCurrentPage: (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const),
@@ -87,14 +88,16 @@ export const getUsersThunk = (page: number, pageSize: number): ThunkType => asyn
 }
 
 export const follow = (UserId: number): ThunkType => async (dispatch) => {
-    _followUnfollowFlow(dispatch, UserId, usersAPI.postUsersFollow(UserId))
+   await _followUnfollowFlow(dispatch, UserId, usersAPI.postUsersFollow.bind(UserId))
 }
 export const unFollow = (UserId: number): ThunkType => async (dispatch) => {
-    _followUnfollowFlow(dispatch, UserId, usersAPI.deleteUsersFollow(UserId));
+   await _followUnfollowFlow(dispatch, UserId, usersAPI.deleteUsersFollow.bind(UserId));
 }
-const _followUnfollowFlow = async (dispatch : any, UserId: number, apiMethod: any) => {
+const _followUnfollowFlow = async (dispatch : Dispatch<ActionsTypes>,
+                                   UserId: number,
+                                   apiMethod: (userId : number)=>  Promise<ApiResponseType>) => {
     dispatch(actions.toggleFollowingProgress(true, UserId))
-    let data = await apiMethod;
+    let data = await apiMethod(UserId);
 
     if (data.resultCode === 0) {
         dispatch(actions.followToggle(UserId))

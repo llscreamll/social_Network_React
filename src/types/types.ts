@@ -32,8 +32,8 @@ export type contactsType = {
 
 
 export type PhotosType = {
-    small: string |  undefined
-    large: string | undefined
+    small: string |  undefined | null
+    large: string | undefined  | null
 
 }
 
