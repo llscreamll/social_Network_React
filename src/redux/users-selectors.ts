@@ -31,5 +31,9 @@ export const getUsersFilter =(state : AppStateType) =>{
     return state.usersPage.filter
 }
 
+export const getCaptchaUrl = (state :AppStateType )=> {
+    return  state.auth.urlCaptcha
+}
+
 
 

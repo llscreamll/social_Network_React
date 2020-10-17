@@ -44,7 +44,7 @@ let App : React.FC<MapStateType & MapDispatchType> =(props)=> {
                 <React.Suspense fallback={<Preloader />}>
                     <Switch>
                         <Route exact path="/messages"> <DialogsContainer /> </Route>
-                        <Route path="/users" >  <UsersContainer pageTitle={"Users:"}/> </Route>
+                        <Route path="/users" >  <UsersContainer /> </Route>
                         <Route path="/login" > <Login /> </Route>
                         <Route path="/news" ><News /></Route>
                         <Route path="/music"> <Music/> </Route>

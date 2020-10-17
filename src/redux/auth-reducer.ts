@@ -25,7 +25,6 @@ const authReducer = (state = initialState, action: ActionTypes): initialStateTyp
             return {
                 ...state,
                 ...action.payload
-
             }
         case 'GET_CAPTCHA_URL':
             return {
