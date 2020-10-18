@@ -1,59 +1,64 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import Preloader from "../Common/Reloader";
 import avatarImages from "../images/avatar.jpg"
 import style from "./Profile.module.css"
 import ProfileStatus from "./ProfileStatus";
 import ProfileDataFormRedux from "./ProfileDataForm";
-import { ProfileType } from "../../types/types";
+import {ProfileType} from "../../types/types";
 
 type MyProfileInfoType = {
-    saveProfile : ( dataForm : ProfileType) => Promise<any>
-    profile : ProfileType
-    savePhoto: ( file : File) => void
-    status : string
-    updateStatusProfileThunk : (status : string) => void
-    isOwner : boolean
+    saveProfile: (dataForm: ProfileType) => Promise<any>
+    profile: ProfileType
+    savePhoto: (file: File) => void
+    status: string
+    updateStatusProfileThunk: (status: string) => void
+    isOwner: boolean
 }
 
-let MyProfileInfo : React.FC<MyProfileInfoType> = (props) => {
+let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
+
+    let [profile,setProfile] = useState(props.profile)
+
+    useEffect(()=>{
+        setProfile(props.profile)
+    },[props.profile])
 
     const [editMode, setEditMode] = useState(false);
+
 
     let edithMode = () => {
         setEditMode(!editMode);
     }
 
     let onSubmit = (dataForm: ProfileType) => {
-        // todo : remove then
-        props.saveProfile(dataForm)
 
+            props.saveProfile(dataForm)
             .then(() => {
                 setEditMode(!editMode)
             })
     }
-
-
-    if (!props.profile) {
+    if (!profile) {
         return <Preloader/>
     }
+
+
     const onMainPhotoSelector = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length) {
             props.savePhoto(e.target.files[0])
         }
     }
+
     return (
         <div className={style.containerProfile}>
-
             <div className={style.profileInfoStatus}>
                 <div>
                     <img className={style.imgUser}
-                         src={props.profile.photos?.large as string !== null  ? props.profile.photos?.small as string : avatarImages}
-                         alt="img" />
-
+                    src={profile.photos?.large as string ? profile.photos?.small as string: avatarImages}
+                    alt="img"/>
                 </div>
                 <div className={style.userInfo}>
                     <div>
-                        <h1>{props.profile.fullName}</h1>
+                        <h1>{profile.fullName}</h1>
                     </div>
 
                     <ProfileStatus status={props.status}
@@ -67,15 +72,14 @@ let MyProfileInfo : React.FC<MyProfileInfoType> = (props) => {
 
             {editMode ?
                 <ProfileDataFormRedux
-                    profile={props.profile}
+                    initialValues ={profile}
+                    profile={profile}
                     isOwner={props.isOwner}
                     edithMode={edithMode}
                     onSubmit={onSubmit}
-
-
                 />
                 :
-                <ProfileData profile={props.profile}
+                <ProfileData profile={profile}
                              isOwner={props.isOwner}
                              edithMode={edithMode}
                 />}
@@ -85,17 +89,16 @@ let MyProfileInfo : React.FC<MyProfileInfoType> = (props) => {
 }
 
 
-
 // Information user
 
-type ProfileDataPropsType ={
-    profile : ProfileType
-    isOwner : boolean
-    edithMode : () => void
+type ProfileDataPropsType = {
+    profile: ProfileType
+    isOwner: boolean
+    edithMode: () => void
 
 }
 
-const ProfileData : React.FC<ProfileDataPropsType> = ({profile,edithMode,isOwner}) => {
+const ProfileData: React.FC<ProfileDataPropsType> = ({profile, edithMode, isOwner}) => {
     const ObjKeysProfileContacts = profile.contacts
 
     return (
@@ -110,11 +113,10 @@ const ProfileData : React.FC<ProfileDataPropsType> = ({profile,edithMode,isOwner
                 <h3>Contacts:</h3>
 
                 <ul>
-
-                    { (Object.keys(ObjKeysProfileContacts) as Array<keyof typeof ObjKeysProfileContacts>).map((el,id) =>{
+                    {(Object.keys(ObjKeysProfileContacts) as Array<keyof typeof ObjKeysProfileContacts>).map((el) => {
                         return (
-                            <li key={id}><b>{el}:</b><br/>
-                                {ObjKeysProfileContacts[el] ? ObjKeysProfileContacts[el] : "...."}
+                            <li><b>{el}:</b><br/>
+                                {ObjKeysProfileContacts[el] !== null && ObjKeysProfileContacts[el] !== undefined ? ObjKeysProfileContacts[el] : "...."}
                             </li>
                         )
                     })}

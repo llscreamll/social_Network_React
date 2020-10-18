@@ -3,7 +3,7 @@ import Paginator from "../Common/Paginator/Paginator";
 import User from "./User";
 import style from "./Users.module.css"
 import {UsersSearchForm} from "./UsersSearchFrom";
-import {FilterType, getUsersThunk} from "../../redux/users-reducer";
+import {FilterType, follow, getUsersThunk, unFollow} from "../../redux/users-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {
     getCurrentPage,
@@ -81,10 +81,10 @@ export let Users: FC<usersType> = (props) => {
         dispatch(getUsersThunk(1, pageSize, filter))
     }
 
-    const follow = (UserId: number) => {
+    const followUsers = (UserId: number) => {
         dispatch(follow(UserId))
     }
-    const unFollow = (UserId: number) => {
+    const unFollowUsers= (UserId: number) => {
         dispatch(unFollow(UserId))
     }
 
@@ -108,8 +108,8 @@ export let Users: FC<usersType> = (props) => {
                                     <User user={el}
                                           followingProgress={followingProgress}
                                           isAuth={isAuth}
-                                          follow={follow}
-                                          unFollow={unFollow}
+                                          followUsers={followUsers}
+                                          unFollowUsers={unFollowUsers}
                                           key={el.id}
                                     />
                                 </div>

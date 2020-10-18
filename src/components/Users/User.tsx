@@ -8,11 +8,11 @@ type PropsType = {
     user: UserType
     isAuth: boolean
     followingProgress: Array<number>
-    follow : (userId : number) => void
-    unFollow : (userId : number) => void
+    followUsers : (userId : number) => void
+    unFollowUsers : (userId : number) => void
 }
 
-let User: React.FC<PropsType> = ({user,followingProgress,follow,unFollow,isAuth}) => {
+let User: React.FC<PropsType> = ({user,followingProgress,followUsers,unFollowUsers,isAuth}) => {
 
     return (
             <div className={style.usersBorder}>
@@ -25,10 +25,10 @@ let User: React.FC<PropsType> = ({user,followingProgress,follow,unFollow,isAuth}
 
                 {isAuth ? <div>
                     {user.followed ? <button disabled={followingProgress.some(id => id === user.id)} onClick={
-                            () => { unFollow(user.id) }
+                            () => { unFollowUsers(user.id) }
                         }>Отписаться</button> :
                         <button disabled={followingProgress.some(id => id === user.id) } onClick={
-                            () => { follow(user.id) }
+                            () => {followUsers(user.id) }
 
                         }>Подписаться</button>}
                 </div>

@@ -14,6 +14,7 @@ let initialState = {
     status: null as string | null
 };
 
+console.log(initialState.profile)
 
 type initialStateType = typeof initialState
 
@@ -43,12 +44,10 @@ const profileReducer = (state = initialState, action: ActionsType): initialState
                 ...state, status: action.status
             }
         case 'SET_USER_PHOTO': {
-            debugger
             return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
         }
         case 'SET_EDIT_PROFILE':
-
-            return {...state, profile: action.editProfile}
+            return {...state, profile: {...state.profile , ...action.editProfile } as ProfileType}
 
         case 'IS_PRELOADER_USERS': {
             return {...state, preloaderUsers: action.preloader}
@@ -100,9 +99,11 @@ export const savePhoto = (file: File) : ThunkType => async (dispatch) => {
     }
 }
 export const saveProfile = (editProfile: ProfileType):ThunkType => async (dispatch) => {
+
     let response = await profileAPI.saveProfileToServer(editProfile)
     if (response.resultCode === 0) {
         dispatch(actions.saveProfileInfo(editProfile))
+        debugger
     } else {
         let message = response.messages.length > 0 ? response.messages[0] : "Some error";
         dispatch(stopSubmit("profileEdit", {_error: `${message}`}));

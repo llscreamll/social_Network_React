@@ -34,7 +34,9 @@ const Dialogs : React.FC<PropsType> = (props) => {
 
     return (
         <div className={style.container}>
+            <h1>Test message:</h1>
         <div className={style.content}>
+
             <div className={style.contentUsers}>
                 {props.dialogsPage.users.map(el => <Users users={el.user} id={el.id} key={el.id}/>)}
             </div>

@@ -26,4 +26,14 @@
 .loginForm{
     text-align: center;
 }
+.testAccount{
+    background: white;
+    width: 300px;
+    margin: 100px auto;
+    border-radius: 20px;
+}
+.testAccount span {
+    color: red;
+}
+
 
