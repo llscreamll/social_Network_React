@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5abb8db76296d0b355d6d45b2075ecf5",
+    "revision": "d66fc4db61ce5c1aa5edede769deb3f2",
     "url": "/social_Network_React/index.html"
   },
   {
-    "revision": "fe6cf0a8fc3a43c82ce9",
+    "revision": "309598feb06cc5fad94d",
     "url": "/social_Network_React/static/css/4.c3bc9427.chunk.css"
   },
   {
@@ -12,16 +12,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social_Network_React/static/css/5.f28e9384.chunk.css"
   },
   {
-    "revision": "20050bcb0d6678f16d4f",
+    "revision": "c2cf92907679e4e4739c",
     "url": "/social_Network_React/static/css/main.525f7ce9.chunk.css"
   },
   {
-    "revision": "cb299087ef618d51cb34",
-    "url": "/social_Network_React/static/js/2.e5f8fd22.chunk.js"
+    "revision": "122e7c5bd0bd7db94bc7",
+    "url": "/social_Network_React/static/js/2.90aadfa1.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/social_Network_React/static/js/2.e5f8fd22.chunk.js.LICENSE.txt"
+    "url": "/social_Network_React/static/js/2.90aadfa1.chunk.js.LICENSE.txt"
   },
   {
     "revision": "44a4661e06321ed4be65",
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social_Network_React/static/js/3.112e7dcc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fe6cf0a8fc3a43c82ce9",
-    "url": "/social_Network_React/static/js/4.6cea52ed.chunk.js"
+    "revision": "309598feb06cc5fad94d",
+    "url": "/social_Network_React/static/js/4.614df867.chunk.js"
   },
   {
     "revision": "6b953534c5fbda50b777",
@@ -56,12 +56,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social_Network_React/static/js/9.5b7f6b82.chunk.js"
   },
   {
-    "revision": "20050bcb0d6678f16d4f",
-    "url": "/social_Network_React/static/js/main.439d65ef.chunk.js"
+    "revision": "c2cf92907679e4e4739c",
+    "url": "/social_Network_React/static/js/main.bf2818cf.chunk.js"
   },
   {
-    "revision": "5ccbb259249ec5021bde",
-    "url": "/social_Network_React/static/js/runtime-main.d38695b0.js"
+    "revision": "b08d5f1e513e0a5e9722",
+    "url": "/social_Network_React/static/js/runtime-main.d9d66f82.js"
   },
   {
     "revision": "fcbe617b2abd9081f52e6da966057b28",
