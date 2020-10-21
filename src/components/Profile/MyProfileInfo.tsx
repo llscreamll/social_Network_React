@@ -4,8 +4,8 @@ import avatarImages from "../images/avatar.jpg"
 import style from "./Profile.module.css"
 import ProfileStatus from "./ProfileStatus";
 import ProfileDataFormRedux from "./ProfileDataForm";
+import {Col, Image, Row} from 'antd';
 import {ProfileType} from "../../types/types";
-import { UploadOutlined } from "@ant-design/icons/lib/icons";
 
 type MyProfileInfoType = {
     saveProfile: (dataForm: ProfileType) => Promise<any>
@@ -18,11 +18,11 @@ type MyProfileInfoType = {
 
 let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
-    let [profile,setProfile] = useState(props.profile)
+    let [profile, setProfile] = useState(props.profile)
 
-    useEffect(()=>{
+    useEffect(() => {
         setProfile(props.profile)
-    },[props.profile])
+    }, [props.profile])
 
     const [editMode, setEditMode] = useState(false);
 
@@ -33,7 +33,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
     let onSubmit = (dataForm: ProfileType) => {
 
-            props.saveProfile(dataForm)
+        props.saveProfile(dataForm)
             .then(() => {
                 setEditMode(!editMode)
             })
@@ -44,36 +44,36 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
 
     const onMainPhotoSelector = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.files)
-        // if (e.target.files?.length) {
-        //     props.savePhoto(e.target.files[0])
-        // }
+        if (e.target.files?.length) {
+            props.savePhoto(e.target.files[0])
+        }
     }
 
     return (
-        <div className={style.containerProfile}>
-            <div className={style.profileInfoStatus}>
-                <div>
-                    <img className={style.imgUser}
-                    src={profile.photos?.large as string ? profile.photos?.small as string: avatarImages}
-                    alt="img"/>
-                </div>
-                <div className={style.userInfo}>
-                    <div>
-                        <h1>{profile.fullName}</h1>
-                    </div>
-
+        <>
+        <div className={style.imgHeader} >
+            <Image
+                    width={300}
+                    src={profile.photos?.large as string ? profile.photos?.small as string : avatarImages}
+                    alt="img"
+                />
+                <div className={style.HeaderStatus}>
+                    <h1>{profile.fullName}</h1>
                     <ProfileStatus status={props.status}
                                    updateStatusProfileThunk={props.updateStatusProfileThunk}
                     />
                 </div>
-                <div>{props.isOwner ?  <input type={"file"} onChange={onMainPhotoSelector}/> : ""}</div>
 
-            </div>
+        </div>
+
+
+
+            <div>{props.isOwner ? <input type={"file"} onChange={onMainPhotoSelector}/> : ""}</div>
+
 
             {editMode ?
                 <ProfileDataFormRedux
-                    initialValues ={profile}
+                    initialValues={profile}
                     profile={profile}
                     isOwner={props.isOwner}
                     edithMode={edithMode}
@@ -85,7 +85,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
                              edithMode={edithMode}
                 />}
 
-        </div>
+        </>
     )
 }
 

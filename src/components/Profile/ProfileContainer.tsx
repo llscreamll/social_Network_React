@@ -12,27 +12,27 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import Reloader from "../Common/Reloader";
 import {AppStateType} from "../../redux/redux-store";
-import { ProfileType } from '../../types/types';
+import {ProfileType} from '../../types/types';
 
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
 type ProfileContainerType = {
 
-    profile : ProfileType
-    savePhoto: ( file : File) => void
-    status : string
-    updateStatusProfileThunk : (status : string) => void
-    isOwner : boolean
-    getStatusProfileThunk : (userId : number) => void
-     setPreloaderUsers: (preloader: boolean) => void
-    getUsersProfiles : (userId : number) => void
-    authDisabled : boolean
-    saveProfile : ( dataForm : ProfileType) => Promise<any>
+    profile: ProfileType
+    savePhoto: (file: File) => void
+    status: string
+    updateStatusProfileThunk: (status: string) => void
+    isOwner: boolean
+    getStatusProfileThunk: (userId: number) => void
+    setPreloaderUsers: (preloader: boolean) => void
+    getUsersProfiles: (userId: number) => void
+    authDisabled: boolean
+    saveProfile: (dataForm: ProfileType) => Promise<any>
 
 }
-type PathParamsType ={
-    userId : string
+type PathParamsType = {
+    userId: string
 }
 
 
@@ -56,8 +56,8 @@ const ProfileContainer: React.FC<MapStateToPropsType & ProfileContainerType & Ro
                 props.history.push("/login")
             }
         }
-            props.getUsersProfiles(userId as number)
-            props.getStatusProfileThunk(userId as number)
+        props.getUsersProfiles(userId as number)
+        props.getStatusProfileThunk(userId as number)
 
     }
 
@@ -85,7 +85,7 @@ const ProfileContainer: React.FC<MapStateToPropsType & ProfileContainerType & Ro
 
 }
 
-let mapStateToProps = (state:AppStateType) => ({
+let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePages.profile,
     status: state.profilePages.status,
     authorizedUserId: state.auth.userId,

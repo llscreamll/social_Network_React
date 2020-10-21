@@ -1,31 +1,13 @@
-.profileStyle{
-    background: #DCDCDC;
-}
 
-.containerProfile{
-    background:linear-gradient(#2ae4e7,#DCDCDC);
-
-}
-.imagesUsers{
-    padding: 10px;
-}
-
-.imgUser{
-    width: 200px;
-    border: 2px solid black;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-
-.profileInfoStatus{
-    padding: 20px;
-    width: 100%;
+.imgHeader{
+    margin: 20px;
     display: flex;
-    flex-wrap: wrap;
 }
-.userInfo{
-    width: 600px;
-    padding-left: 20px;
-    font-style: italic;
+.imgHeader h1{
+    font-size: 40px;
+}
+.HeaderStatus{
+    margin-left: 30px;
 }
 
 .userInfo span{

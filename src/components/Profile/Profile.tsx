@@ -2,7 +2,6 @@ import React from 'react'
 import { ProfileType } from '../../types/types';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import  MyProfileInfo from "./MyProfileInfo"
-import style from "./Profile.module.css"
 
 type ProfileTypes = {
     saveProfile : ( dataForm : ProfileType) => Promise<any>
@@ -16,7 +15,8 @@ const Profile: React.FC<ProfileTypes> = (props) => {
 
     return (
 
-        <div className={style.profileStyle} >
+        <>
+
           <MyProfileInfo profile={props.profile}
                          isOwner={props.isOwner}
                          status={props.status}
@@ -24,10 +24,8 @@ const Profile: React.FC<ProfileTypes> = (props) => {
                          savePhoto={props.savePhoto}
                          saveProfile={props.saveProfile}
           />
-
           <MyPostsContainer />
-
-        </div>
+          </>
 
 
     )

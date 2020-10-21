@@ -1,6 +1,4 @@
-.pageUsers{
-    background:linear-gradient(#e7e1e1,#DCDCDC);
-}
+
 .usersPage{
     display: flex;
     flex-wrap: wrap;
