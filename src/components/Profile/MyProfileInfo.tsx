@@ -5,6 +5,7 @@ import style from "./Profile.module.css"
 import ProfileStatus from "./ProfileStatus";
 import ProfileDataFormRedux from "./ProfileDataForm";
 import {ProfileType} from "../../types/types";
+import { UploadOutlined } from "@ant-design/icons/lib/icons";
 
 type MyProfileInfoType = {
     saveProfile: (dataForm: ProfileType) => Promise<any>
@@ -43,9 +44,10 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
 
     const onMainPhotoSelector = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files?.length) {
-            props.savePhoto(e.target.files[0])
-        }
+        console.log(e.target.files)
+        // if (e.target.files?.length) {
+        //     props.savePhoto(e.target.files[0])
+        // }
     }
 
     return (
@@ -65,8 +67,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
                                    updateStatusProfileThunk={props.updateStatusProfileThunk}
                     />
                 </div>
-
-                <div>{props.isOwner ? <input type={"file"} onChange={onMainPhotoSelector}/> : ""}</div>
+                <div>{props.isOwner ?  <input type={"file"} onChange={onMainPhotoSelector}/> : ""}</div>
 
             </div>
 

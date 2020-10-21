@@ -27,10 +27,17 @@
     text-align: center;
 }
 .testAccount{
-    background: white;
+    background: #cfcccc;
+    border: 2px solid #7e7c7c;
     width: 300px;
     margin: 100px auto;
     border-radius: 20px;
+    box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+
+}
+.testValues{
+    text-align: left;
+    padding-left: 30px;
 }
 .testAccount span {
     color: red;
