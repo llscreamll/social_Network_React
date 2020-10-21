@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.module.css"],"names":[],"mappings":"AAAA,8BACI,YAAa,CACb,2CACJ","file":"7.d2bebccb.chunk.css","sourcesContent":[".backgroundMusic {\r\n    height: 100vh;\r\n    background:linear-gradient(#2ae4e7,#DCDCDC);\r\n}\r\n"]}
