@@ -17,7 +17,7 @@ let User: React.FC<PropsType> = ({user,followingProgress,followUsers,unFollowUse
     return (
             <div className={style.usersBorder}>
                 <NavLink to={`/profile/${user.id}`}>
-                <img src={user.photos.small != null ? user.photos.small : avatar} alt="logo"/>
+                <img style={{width: '100px'}} src={user.photos.small != null ? user.photos.small : avatar} alt="logo"/>
                 </NavLink>
 
                 <div>{user.name}</div>

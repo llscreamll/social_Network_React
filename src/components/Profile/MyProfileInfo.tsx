@@ -4,28 +4,33 @@ import avatarImages from "../images/avatar.jpg"
 import style from "./Profile.module.css"
 import ProfileStatus from "./ProfileStatus";
 import ProfileDataFormRedux from "./ProfileDataForm";
-import {Col, Image, Row} from 'antd';
+import {Image} from 'antd';
 import {ProfileType} from "../../types/types";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {savePhoto, saveProfile} from "../../redux/profile-reducer";
 
-type MyProfileInfoType = {
-    saveProfile: (dataForm: ProfileType) => Promise<any>
-    profile: ProfileType
-    savePhoto: (file: File) => void
-    status: string
-    updateStatusProfileThunk: (status: string) => void
+
+type MyProfileInfoType ={
     isOwner: boolean
 }
 
 let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
-    let [profile, setProfile] = useState(props.profile)
+    const {profile,status} = useSelector((state:AppStateType) => state.profilePages)
+
+
+    let [profiles,setProfiles] = useState(profile)
+
+
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
-        setProfile(props.profile)
-    }, [props.profile])
+        setProfiles(profile)
+    }, [profile])
 
     const [editMode, setEditMode] = useState(false);
-
 
     let edithMode = () => {
         setEditMode(!editMode);
@@ -33,10 +38,10 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
     let onSubmit = (dataForm: ProfileType) => {
 
-        props.saveProfile(dataForm)
-            .then(() => {
-                setEditMode(!editMode)
-            })
+         dispatch(saveProfile(dataForm))
+
+        setEditMode(!editMode)
+
     }
     if (!profile) {
         return <Preloader/>
@@ -45,7 +50,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
     const onMainPhotoSelector = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length) {
-            props.savePhoto(e.target.files[0])
+            dispatch(savePhoto(e.target.files[0]))
         }
     }
 
@@ -54,13 +59,13 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
         <div className={style.imgHeader} >
             <Image
                     width={300}
-                    src={profile.photos?.large as string ? profile.photos?.small as string : avatarImages}
+
+                    src={profiles?.photos?.large !== null  ? profiles?.photos?.large  as string  : avatarImages }
                     alt="img"
                 />
                 <div className={style.HeaderStatus}>
                     <h1>{profile.fullName}</h1>
-                    <ProfileStatus status={props.status}
-                                   updateStatusProfileThunk={props.updateStatusProfileThunk}
+                    <ProfileStatus status={status as string}
                     />
                 </div>
 

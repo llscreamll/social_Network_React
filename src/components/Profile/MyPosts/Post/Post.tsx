@@ -20,7 +20,7 @@ const Post : React.FC<PostType>= (props) => {
     return (
         <div className={style.post}>
             <div>
-            <img src={userImg} alt="" />
+            <img style={{width:'70px'}} src={userImg} alt="" />
             </div>
 
 
