@@ -18,10 +18,8 @@ import {useHistory} from 'react-router-dom';
 import * as queryString from "querystring";
 
 
-type usersType = {}
-
 type queryParamsType = { term?: string, page?: string, friend?: string };
-export let Users: FC<usersType> = (props) => {
+export let Users: FC = (): React.ReactElement => {
 
     const totalUserCount = useSelector(getTotalUserCount)
     const users = useSelector(getUsers)
@@ -33,8 +31,6 @@ export let Users: FC<usersType> = (props) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
-
-
 
 
     useEffect(() => {
@@ -62,17 +58,17 @@ export let Users: FC<usersType> = (props) => {
         dispatch(getUsersThunk(actualPage, pageSize, actualFilter))
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         const query: queryParamsType = {};
-        if(!!filter.term) query.term = filter.term
-        if(filter.friend !== null) query.friend = String(filter.friend)
-        if(currentPage !== 1) query.page = String(currentPage)
+        if (!!filter.term) query.term = filter.term
+        if (filter.friend !== null) query.friend = String(filter.friend)
+        if (currentPage !== 1) query.page = String(currentPage)
 
         history.push({
-            pathname : "/users",
+            pathname: "/users",
             search: queryString.stringify(query)
         })
-    },[filter,currentPage])
+    }, [filter, currentPage])
 
     const onPageChanged = (pageNumber: number) => {
         dispatch(getUsersThunk(pageNumber, pageSize, filter))
@@ -84,7 +80,7 @@ export let Users: FC<usersType> = (props) => {
     const followUsers = (UserId: number) => {
         dispatch(follow(UserId))
     }
-    const unFollowUsers= (UserId: number) => {
+    const unFollowUsers = (UserId: number) => {
         dispatch(unFollow(UserId))
     }
 
@@ -95,11 +91,12 @@ export let Users: FC<usersType> = (props) => {
             </div>
 
             <div className={style.usersPages}>
-                <Paginator currentPage={currentPage}
-                           totalUserCount={totalUserCount}
+
+                <Paginator totalUserCount={totalUserCount}
                            pageSize={pageSize}
                            onPageChanged={onPageChanged}
                 />
+
                 <div className={style.usersPage}>
                     {
                         users.map(el => {

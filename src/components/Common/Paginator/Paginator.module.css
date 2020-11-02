@@ -1,10 +1,4 @@
-.paginator{
-    display: flex;
-    padding: 20px;
-    position: relative;
 
-
-}
 .pageNumber{
     text-align: center;
     width: 33px;

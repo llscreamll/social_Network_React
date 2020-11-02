@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import { updateStatusProfileThunk } from "../../redux/profile-reducer";
+import {updateStatusProfileThunk} from "../../../redux/profile-reducer";
+import {Card} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 type PropsType = {
     status: string
@@ -19,8 +21,8 @@ const ProfileStatus: React.FC<PropsType> = (props) => {
     const activateMode = () => {
         setEditMode(true);
     }
-    const deactivateEditMode = (e: ChangeEvent<HTMLInputElement>) => {
-        if (props.status !== e.currentTarget.value) {
+    const deactivateEditMode = (e: { currentTarget: { value: string; }; }) => {
+        if (props.status !== e.currentTarget.value && e.currentTarget.value !== "") {
             dispatch(updateStatusProfileThunk(e.currentTarget.value))
         }
         setEditMode(false);
@@ -30,21 +32,24 @@ const ProfileStatus: React.FC<PropsType> = (props) => {
 
     }
     return (
-        <div>
+        <>
             {!editMode &&
-            <div>
-                <b><i>Status:</i></b> <span onDoubleClick={activateMode}>{status || "Enter your status"}</span>
-            </div>
+            <Card>
+                <span>Status:</span> <span onDoubleClick={activateMode}>{status || "Enter your status"}</span>
+            </Card>
             }{editMode &&
-        <div>
-            <input autoFocus={true}
-                   onBlur={deactivateEditMode}
-                   onChange={onStatusChange}
-                   value={status}
+        <form noValidate autoComplete="off">
+            <TextField
+                autoFocus
+                onBlur={deactivateEditMode}
+                onChange={onStatusChange}
+                id="standard-basic"
+                label="Standard"
             />
-        </div>
+        </form>
+
         }
-        </div>
+        </>
     )
 }
 export default ProfileStatus;

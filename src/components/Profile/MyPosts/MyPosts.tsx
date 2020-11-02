@@ -5,22 +5,20 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {createField, Textarea} from "../../Common/FormsControls/FormsControls";
 import {GetStringKeys, postType} from "../../../types/types";
+import {useDispatch, useSelector} from "react-redux";
+import { AppStateType } from '../../../redux/redux-store';
+import {actions} from "../../../redux/profile-reducer";
 
 
 const maxLengthCreator500 = maxLengthCreator(500)
 
+const MyPosts: React.FC = (): React.ReactElement => {
 
-type MyPostsTypes ={
-    addPostActionCreator : (postText : string) => void
-    posts : postType[]
-    deletePost : (postId : string) => void
-}
-
-
-const MyPosts: React.FC<MyPostsTypes> = (props) => {
+    const posts = useSelector((state:AppStateType) => state.profilePages.posts)
+    const dispatch = useDispatch()
 
     let newPostValue = (post: PostTextValuesType) => {
-        props.addPostActionCreator(post.postText);
+        dispatch(actions.addPostActionCreator(post.postText));
         post.postText = "";
     }
 
@@ -30,11 +28,10 @@ const MyPosts: React.FC<MyPostsTypes> = (props) => {
             <i><h2>My posts:</h2></i>
             <AddNewPostFormText onSubmit={newPostValue}/>
             <div className={style.postItem}>
-                {props.posts.map((el) => <Post key={el.id}
+                {posts.map((el) => <Post key={el.id}
                                                     posts={el.mes}
                                                     id={el.id}
                                                     like={el.like}
-                                                    deletePost={props.deletePost}
                 />)}
 
             </div>
@@ -50,10 +47,8 @@ type PostTextValuesType = {
 }
 type LoginFormValuesTypeKeys = GetStringKeys<PostTextValuesType>
 
-
 let AddNewPostForm: React.FC<InjectedFormProps<PostTextValuesType, OwnPropsType & OwnPropsType>> = (props) => {
     return (
-
         <form onSubmit={props.handleSubmit}>
             <div className={style.text}>
                 {createField<LoginFormValuesTypeKeys>("your news...", "postText", [required, maxLengthCreator500], Textarea)}
@@ -62,8 +57,6 @@ let AddNewPostForm: React.FC<InjectedFormProps<PostTextValuesType, OwnPropsType 
         </form>
     )
 }
-
-
 let AddNewPostFormText = reduxForm<PostTextValuesType, OwnPropsType>({form: "newPost"})(AddNewPostForm)
 
 export default MyPosts;

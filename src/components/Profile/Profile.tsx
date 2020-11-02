@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {useHistory, useParams} from 'react-router-dom';
-import MyProfileInfo from "./MyProfileInfo"
+import MyProfileInfo from "./profileInfo/MyProfileInfo"
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from '../../redux/redux-store';
 import {actions, getStatusProfileThunk, getUsersProfiles} from "../../redux/profile-reducer";
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import MyPosts from './MyPosts/MyPosts';
 
 const Profile = (): React.ReactElement => {
     const authorizedUserId = useSelector((state: AppStateType) => state.auth.userId)
@@ -23,7 +23,6 @@ const Profile = (): React.ReactElement => {
 
         if (!userIdNumber) {
             userIdNumber = authorizedUserId;
-
             if (!userIdNumber) {
                 history.push("/login")
             }
@@ -33,8 +32,9 @@ const Profile = (): React.ReactElement => {
     }
     return (
         <>
+
             <MyProfileInfo isOwner={isOwner}/>
-            <MyPostsContainer/>
+            <MyPosts />
         </>
 
 

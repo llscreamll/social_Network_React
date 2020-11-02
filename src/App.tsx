@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import "./App.css";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
@@ -12,7 +11,7 @@ import Container from '@material-ui/core/Container/Container';
 import Grid from '@material-ui/core/Grid';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import {useStyles} from "./theme";
-import {Paper, Typography} from "@material-ui/core";
+import {Hidden, Paper, Typography} from "@material-ui/core";
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import MessageIcon from '@material-ui/icons/Message';
 import NearMeIcon from '@material-ui/icons/NearMe';
@@ -26,70 +25,82 @@ let App = () => {
 
     useEffect(() => {
         dispatch(initializeApp())
-    }, [])
+    }, [dispatch])
 
     if (!initialized) return <Preloader/>
     return (
         <>
             <AppHeader/>
 
-
             <Container maxWidth={"lg"}>
+
                 <Grid container>
                     <Grid direction="column"
-                          alignItems="flex-start"
-                          justify="flex-start"
-                          container
-                          xs={3}>
-                        <Paper elevation={2} className={classes.navbarPaper}  >
-                        <NavLink to="/profile" className={classes.navLinkStyle}
-                                 activeClassName={classes.navActiveClass}>
-                            <Button className={classes.navMenuButton}>
+                          xs={2}
+                          sm={3}
+                    >
+                        <Paper elevation={1} className={classes.navbarPaper}>
 
-                                <PersonOutlineIcon fontSize={"large"}/>
-                                <Typography className={classes.navbarText}>Профиль</Typography>
-                            </Button>
-                        </NavLink>
+                            <NavLink to="/profile"
+                                     activeClassName={classes.navActiveClass}>
+                                <Button className={classes.navMenuButton}>
+                                    <PersonOutlineIcon fontSize={"large"}/>
+                                    <Hidden smDown>
+                                        <Typography  className={classes.navbarText}>Профиль</Typography>
+                                    </Hidden>
+                                </Button>
+                            </NavLink>
 
-                        <NavLink to="/users" className={classes.navLinkStyle} activeClassName={classes.navActiveClass}>
-                            <Button className={classes.navMenuButton}>
-                                <PeopleAltIcon fontSize={"large"}/>
-                                <Typography className={classes.navbarText}>Пользователи</Typography>
-                            </Button>
-                        </NavLink>
+                            <NavLink to="/users"
+                                     activeClassName={classes.navActiveClass}>
+                                <Button className={classes.navMenuButton}>
+                                    <PeopleAltIcon fontSize={"large"}/>
+                                    <Hidden smDown>
+                                        <Typography className={classes.navbarText}>Пользователи</Typography>
+                                    </Hidden>
+                                </Button>
+                            </NavLink>
 
-                        <NavLink to="/messages" className={classes.navLinkStyle}
-                                 activeClassName={classes.navActiveClass}>
-                            <Button className={classes.navMenuButton}>
-                                <MessageIcon fontSize={"large"}/>
-                                <Typography className={classes.navbarText}>Сообщения</Typography>
-                            </Button>
-                        </NavLink>
+                            <NavLink to="/messages"
+                                     activeClassName={classes.navActiveClass}>
+                                <Button className={classes.navMenuButton}>
+                                    <MessageIcon fontSize={"large"}/>
+                                    <Hidden smDown>
+                                        <Typography className={classes.navbarText}>Сообщения</Typography>
+                                    </Hidden>
+                                </Button>
+                            </NavLink>
 
-                        <NavLink to="/news" className={classes.navLinkStyle} activeClassName={classes.navActiveClass}>
-                            <Button className={classes.navMenuButton}>
-                                <NearMeIcon fontSize={"large"}/>
-                                <Typography className={classes.navbarText}>Новости</Typography>
-                            </Button>
-                        </NavLink>
-                        <NavLink to="/music" className={classes.navLinkStyle} activeClassName={classes.navActiveClass}>
-                            <Button className={classes.navMenuButton}>
-                                <MusicNoteIcon fontSize={"large"}/>
-                                <Typography className={classes.navbarText}>Музыка</Typography>
-                            </Button>
-                        </NavLink>
+                            <NavLink to="/news"
+                                     activeClassName={classes.navActiveClass}>
+                                <Button className={classes.navMenuButton}>
+                                    <NearMeIcon fontSize={"large"}/>
+                                    <Hidden smDown>
+                                        <Typography className={classes.navbarText}>Новости</Typography>
+                                    </Hidden>
+                                </Button>
+                            </NavLink>
+                            <NavLink to="/music"
+                                     activeClassName={classes.navActiveClass}>
+                                <Button className={classes.navMenuButton}>
+                                    <MusicNoteIcon fontSize={"large"}/>
+                                    <Hidden smDown>
+                                        <Typography className={classes.navbarText}>Музыка</Typography>
+                                    </Hidden>
+                                </Button>
+                            </NavLink>
                         </Paper>
                     </Grid>
 
+                    <Grid item
+                          xs={10}
+                          sm={9}
 
-                    <Grid item xs={9}>
-                        <Paper elevation={2}>
-
-                        <AppContent/>
-
+                    >
+                        <Paper elevation={1}>
+                            <AppContent/>
                         </Paper>
                     </Grid>
-
                 </Grid>
             </Container>
         </>

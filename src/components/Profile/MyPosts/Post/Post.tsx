@@ -1,18 +1,25 @@
 import React from 'react'
 import style from "./Post.module.css";
 import userImg from "../../../images/avatar.jpg"
+import {useDispatch} from "react-redux";
+import {actions} from "../../../../redux/profile-reducer";
+import {Button} from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
 
 type PostType ={
-    deletePost: (postId : string) => void
     posts : string
     like : number
     id : number
 }
 const Post : React.FC<PostType>= (props) => {
 
-    let postDelete = (postId : any) =>{
-        props.deletePost(postId)
+    const dispatch = useDispatch()
+
+    let postDelete = (postId : number) =>{
+        dispatch(actions.deletePost(postId))
 
     }
 
@@ -22,15 +29,29 @@ const Post : React.FC<PostType>= (props) => {
             <div>
             <img style={{width:'70px'}} src={userImg} alt="" />
             </div>
-
-
             <div className={style.messagePost}>
             <div>
             <p>{props.posts}</p>
             </div>
             <div>
-                <button>Like {props.like}</button>
-                <button className={style.deleteButton} onClick={()=>{postDelete(props.id)}}>Delete</button>
+
+                <IconButton
+                    color={"secondary"}
+                    aria-label="delete"
+                    onClick={()=>{postDelete(props.id)}}
+                >
+                    <DeleteIcon
+                        color={"secondary"}
+                        fontSize="default" />
+                </IconButton>
+                <IconButton
+                    color={"primary"}
+                    aria-label="delete"
+                >
+                    <ThumbUpAltIcon
+                        color={"primary"}
+                        fontSize="default" />
+                </IconButton>
             </div>
             </div>
         </div>

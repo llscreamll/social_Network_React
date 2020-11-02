@@ -40,7 +40,7 @@ const AppHeader = () => {
                     :
                     <>
                         <div className={classes.avatarLogin}>
-                        <p>{login}</p>
+                        <Typography variant={"h6"}>{login}</Typography>
                         <Avatar alt="Cindy Baker" src={imageUser as string} />
                         <Button variant={"outlined"} color={"secondary"} onClick={logoutOut}>Выход</Button>
                         </div>
