@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Logout} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
@@ -9,7 +9,7 @@ import {Button, Toolbar, Typography} from '@material-ui/core';
 import {useStyles} from "../../theme";
 import MenuIcon from '@material-ui/icons/Menu';
 import Avatar from "@material-ui/core/Avatar";
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const AppHeader = () => {
     const classes = useStyles()
@@ -27,10 +27,14 @@ const AppHeader = () => {
     return (
         <AppBar className={classes.navbarStyles} color={"primary"} position="static">
             <Toolbar>
+
+                <Link to={"/"}>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
+                    <MenuIcon color={"primary"} />
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
+                </Link>
+
+                <Typography variant="h6" color={"primary"} className={classes.title}>
                     Social Network
                 </Typography>
                 {(isAuth === false) ?
@@ -42,39 +46,13 @@ const AppHeader = () => {
                         <div className={classes.avatarLogin}>
                         <Typography variant={"h6"}>{login}</Typography>
                         <Avatar alt="Cindy Baker" src={imageUser as string} />
-                        <Button variant={"outlined"} color={"secondary"} onClick={logoutOut}>Выход</Button>
+                        <IconButton color={"secondary"} onClick={logoutOut}><ExitToAppIcon  /></IconButton >
                         </div>
 
                       </> }
             </Toolbar>
         </AppBar>
 
-
-
-
-
-
-
-        // <Header className="header">
-        //     <div className="logo"/>
-        //     <Row >
-        //         <Col flex="auto">
-        //             {/*<Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>*/}
-        //             <audio style={{width:"200px",height:"20px"}} src="http://air.radiorecord.ru:8101/rr_320" autoPlay={false} controls={true}></audio>
-        //             {/*    <Menu.Item key="1"><Link  to="/users"> users </Link></Menu.Item>*/}
-        //             {/*</Menu>*/}
-        //         </Col>
-        //
-        //
-        //
-        //
-
-
-        //
-        //
-        //
-        //     </Row>
-        // </Header>
 
     )
 }

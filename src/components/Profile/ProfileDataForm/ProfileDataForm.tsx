@@ -12,11 +12,13 @@ import ButtonGroup from "@material-ui/core/ButtonGroup/ButtonGroup";
 import CloseIcon from '@material-ui/icons/Close';
 import SaveIcon from '@material-ui/icons/Save';
 import {Grid} from "@material-ui/core";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
 type PropsType = {
     profile: ProfileType
     isOwner: boolean
     edithMode: () => void
+    infoUser: string
 }
 export type ProfileDataFormType = {
     fullName: string
@@ -26,14 +28,15 @@ export type ProfileDataFormType = {
     contacts: contactsType
 }
 
+
 type ProfileDataFormTypeKeys = GetStringKeys<ProfileDataFormType>
 
-let ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({handleSubmit, profile, error, edithMode, isOwner}) => {
+let ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({infoUser,handleSubmit, profile, error, edithMode, isOwner}) => {
 
     return (
         <Paper variant="outlined" elevation={3}>
             <form>
-                <Grid container xs={12} style={{backgroundColor: '#9adcfa', borderRadius: '20px'}}>
+                <Grid container xs={12} className={infoUser}>
                     <Grid item xs={6}>
                         <CardContent>
                             <Typography variant={"h6"} color={"primary"}>
@@ -74,11 +77,14 @@ let ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsT
                             {error && <div className={style.formSummaryError}>{error}</div>}
                         </CardContent>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid container item xs={6}>
+                        <Grid xs={5}></Grid>
+                        <Grid xs={7}>
                         <ButtonGroup disableElevation variant="contained" color="primary">
                             <Button color={"primary"} onClick={handleSubmit}><SaveIcon/></Button>
                             <Button color={"secondary"} onClick={edithMode}> <CloseIcon/></Button>
                         </ButtonGroup>
+                            </Grid>
                     </Grid>
                 </Grid>
             </form>

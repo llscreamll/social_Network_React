@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             transitionProperty:'1s all initial'
         },
+        infoUser :{
+            background:'linear-gradient(90deg, #89f7fe 0%,#3f51b5 100%)',
+            borderRadius:20
+        },
         '@media (max-width: 960px)':{
             imageUser : {
                 width: 300
@@ -111,6 +115,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
             {editMode ?
                 <ProfileDataFormRedux
+                    infoUser={classes.infoUser}
                     initialValues={profile}
                     profile={profile}
                     isOwner={props.isOwner}
@@ -119,6 +124,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
                 />
                 :
                 <ProfileData profile={profile}
+                             infoUser={classes.infoUser}
                              isOwner={props.isOwner}
                              edithMode={edithMode}
                 />}

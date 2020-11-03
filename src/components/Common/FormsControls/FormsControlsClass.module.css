@@ -23,9 +23,7 @@
     box-shadow: 0 0 20px rgba(241, 6, 6,0.5);
     font-family: monospace;
 }
-.loginForm{
-    text-align: center;
-}
+
 .testAccount{
     background: #cfcccc;
     border: 2px solid #7e7c7c;

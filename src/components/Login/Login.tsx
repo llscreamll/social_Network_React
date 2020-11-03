@@ -1,16 +1,15 @@
 import React from 'react';
-import style from "../Common/FormsControls/FormsControlsClass.module.css"
 import {useDispatch, useSelector} from "react-redux";
 import {LoginEntrance} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {getCaptchaUrl, getIsAuth} from "../../redux/users-selectors";
-import LoginReduxForm from "./LoginReduxForm";
-
+import {Grid, Typography} from "@material-ui/core";
+import LoginFormik from './LoginFormik';
 
 type LoginFormValuesType = {
     email: string
     password: string
-    rememberMe: boolean
+    checkbox: boolean
     captcha?: string | null
 }
 
@@ -22,18 +21,26 @@ const Login: React.FC<LoginType> = () => {
     let dispatch = useDispatch();
 
     const onSubmit = (formData: LoginFormValuesType) => {
-        dispatch(LoginEntrance(formData.email, formData.password, formData.rememberMe, formData.captcha))
+        dispatch(LoginEntrance(formData.email, formData.password, formData.checkbox, formData.captcha))
     }
     if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
     return (
-        <div className={style.loginForm}>
-            <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}
-                            captchaUrl={captchaUrl}
-            />
-        </div>
+        <Grid
+            style={{textAlign:'center',height:'100vh'}}
+            container
+              direction="column"
+              justify="center"
+              alignItems="center">
+            <Grid item xs={12}>
+                <LoginFormik
+                    captchaUrl={captchaUrl}
+                    onSubmit={onSubmit}
+                />
+            </Grid>
+
+        </Grid>
 
     )
 }

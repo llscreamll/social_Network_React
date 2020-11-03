@@ -39,12 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function Music() {
+const Music = () => {
     const classes = useStyles();
     const theme = useTheme();
 
     return (
         <>
+
             <Typography color={"primary"} variant={"h6"}>News:</Typography>
                 <Typography variant={"body2"}>in the development...</Typography>
             <Card className={classes.root}>
@@ -61,7 +62,7 @@ export default function Music() {
                         <IconButton aria-label="previous">
                             {theme.direction === 'rtl' ? <SkipNextIcon/> : <SkipPreviousIcon/>}
                         </IconButton>
-                        <IconButton  aria-label="play/pause">
+                        <IconButton  aria-label="play/pause" >
                             <PlayArrowIcon className={classes.playIcon}/>
                         </IconButton>
                         <IconButton aria-label="next">
@@ -73,9 +74,10 @@ export default function Music() {
                     className={classes.cover}
                     image={image}
                     title="Live from space album cover"
-
                 />
             </Card>
         </>
     );
 }
+
+export default Music

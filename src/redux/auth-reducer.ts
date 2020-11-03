@@ -17,15 +17,23 @@ let initialState = {
     login: null as string | null,
     isFetching: false,
     isAuth: false,
-    urlCaptcha: null as string | null
+    urlCaptcha: null as string | null,
+    error: null as string | null
 }
 const authReducer = (state = initialState, action: ActionTypes): initialStateType => {
     switch (action.type) {
         case 'SET_USER_DATA' :
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
+                error: "",
             }
+        case 'ADD_ERROR_LOGIN' :
+            return {
+                ...state,
+                error: action.payload
+            }
+
         case 'GET_CAPTCHA_URL':
             return {
                 ...state,
@@ -42,7 +50,7 @@ const actions = {
          | null, login: string
          | null, isAuth: boolean) => ({
         type: 'SET_USER_DATA', payload: {userId, email, login, isAuth}} as const),
-
+     addErrorLogin : (message: string) => ({type:'ADD_ERROR_LOGIN',payload:message} as const),
      setCaptchaUrlSecurity : (urlCaptcha: null | string) => ({type: 'GET_CAPTCHA_URL', urlCaptcha} as const)
 }
 export const authMeRegister = () => async (dispatch: any) => {
@@ -52,17 +60,20 @@ export const authMeRegister = () => async (dispatch: any) => {
         dispatch(actions.setAuthUserData(id, email, login, true))
     }
 }
+
 export const LoginEntrance = (email: string, password: string, rememberMe: boolean, captcha?: string | null): ThunkType => async (dispatch) => {
 
+
     const response = await autAPI.loginAuth(email, password, rememberMe, captcha)
+    debugger
     if (response.resultCode === ResultCodesEnum.Success) {
         dispatch(authMeRegister())
     } else if (response.resultCode === ResultCodesEnum.Error) {
         const message = response.messages.length > 0 ? response.messages[0] : "Some error";
-        dispatch(stopSubmit("login", {_error: `${message}`}));
+        dispatch(actions.addErrorLogin(message));
     } else if (response.resultCode === ResultCodesCaptchaEnum.CaptchaIsRequired) {
         let message = response.messages.length > 0 ? response.messages[0] : "Some error";
-        dispatch(stopSubmit("login", {_error: `${message}`}));
+        dispatch(actions.addErrorLogin(message));
         securityAPI.getCaptchaUrl()
             .then((data) => {
                 dispatch(actions.setCaptchaUrlSecurity(data.url))
