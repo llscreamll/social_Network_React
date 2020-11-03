@@ -80,11 +80,9 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
     return (
         <>
-            <Grid container >
-                <Grid item
-                      md={5}
-                      sm={12}
-                >
+            <Grid container spacing={3} >
+
+                <Grid item sm={12} md={5}>
                     <img
                         className={classes.imageUser}
                         src={profiles?.photos?.large !== null ? profiles?.photos?.large as string : avatarImages}
@@ -97,12 +95,7 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
                             </IconButton>
                         </label> </> : ""}
                 </Grid>
-
-                <Grid container
-                      md={7}
-                      sm={12}
-                      direction="column"
-                >
+                <Grid container item sm={12} md={7}  direction="column">
                     <Grid item>
                         <Typography variant={"h4"}>{profile.fullName}</Typography>
                     </Grid>

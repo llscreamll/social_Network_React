@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {LoginEntrance} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {getCaptchaUrl, getIsAuth} from "../../redux/users-selectors";
-import {Grid, Typography} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import LoginFormik from './LoginFormik';
 
 type LoginFormValuesType = {

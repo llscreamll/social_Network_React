@@ -4,9 +4,9 @@ import Post from "./Post/Post"
 import {InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {createField, Textarea} from "../../Common/FormsControls/FormsControls";
-import {GetStringKeys, postType} from "../../../types/types";
+import {GetStringKeys} from "../../../types/types";
 import {useDispatch, useSelector} from "react-redux";
-import { AppStateType } from '../../../redux/redux-store';
+import {AppStateType} from '../../../redux/redux-store';
 import {actions} from "../../../redux/profile-reducer";
 
 
@@ -14,7 +14,7 @@ const maxLengthCreator500 = maxLengthCreator(500)
 
 const MyPosts: React.FC = (): React.ReactElement => {
 
-    const posts = useSelector((state:AppStateType) => state.profilePages.posts)
+    const posts = useSelector((state: AppStateType) => state.profilePages.posts)
     const dispatch = useDispatch()
 
     let newPostValue = (post: PostTextValuesType) => {
@@ -29,9 +29,9 @@ const MyPosts: React.FC = (): React.ReactElement => {
             <AddNewPostFormText onSubmit={newPostValue}/>
             <div className={style.postItem}>
                 {posts.map((el) => <Post key={el.id}
-                                                    posts={el.mes}
-                                                    id={el.id}
-                                                    like={el.like}
+                                         posts={el.mes}
+                                         id={el.id}
+                                         like={el.like}
                 />)}
 
             </div>

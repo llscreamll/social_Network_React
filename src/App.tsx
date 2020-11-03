@@ -20,6 +20,7 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 let App = () => {
     const initialized = useSelector((state: AppStateType) => state.appReducer.initialized)
+
     const dispatch = useDispatch()
     const classes = useStyles()
 
@@ -34,7 +35,7 @@ let App = () => {
 
             <Container maxWidth={"lg"}>
                 <Grid container>
-                    <Grid direction="column"
+                    <Grid item
                           xs={2}
                           sm={3}
                     >
@@ -42,10 +43,10 @@ let App = () => {
 
                             <NavLink to="/profile"
                                      activeClassName={classes.navActiveClass}>
-                                <Button className={classes.navMenuButton}>
+                                <Button  className={classes.navMenuButton}>
                                     <PersonOutlineIcon fontSize={"large"}/>
                                     <Hidden smDown>
-                                        <Typography  className={classes.navbarText}>Профиль</Typography>
+                                        <Typography className={classes.navbarText}>Профиль</Typography>
                                     </Hidden>
                                 </Button>
                             </NavLink>

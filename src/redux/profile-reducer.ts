@@ -14,8 +14,6 @@ let initialState = {
     status: null as string | null
 };
 
-console.log(initialState.profile)
-
 type initialStateType = typeof initialState
 
 

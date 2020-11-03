@@ -65,7 +65,6 @@ export const LoginEntrance = (email: string, password: string, rememberMe: boole
 
 
     const response = await autAPI.loginAuth(email, password, rememberMe, captcha)
-    debugger
     if (response.resultCode === ResultCodesEnum.Success) {
         dispatch(authMeRegister())
     } else if (response.resultCode === ResultCodesEnum.Error) {

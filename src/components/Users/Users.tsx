@@ -99,9 +99,9 @@ export let Users: FC = (): React.ReactElement => {
 
                 <div className={style.usersPage}>
                     {
-                        users.map(el => {
+                        users.map((el,id) => {
                             return (
-                                <div className={style.users}>
+                                <div className={style.users} key={`${id}_${el.name}`}>
                                     <User user={el}
                                           followingProgress={followingProgress}
                                           isAuth={isAuth}

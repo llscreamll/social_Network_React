@@ -1,4 +1,8 @@
-https://llscreamll.github.io/social_Network_React/
+Visual viewing: https://llscreamll.github.io/social_Network_React/
+
+Стэк: React,Redux,thunk,typeScript,formik Material-UI,react-router-dom
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

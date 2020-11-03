@@ -14,15 +14,14 @@ const Settings = React.lazy(() => import('../components/Settings/Settings'));
 
 
 const AppContent = () => {
+    //authorization check
     const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
     return (
         <>
-            {/*authorization check*/}
             <Route exact path="/"> {isAuth ? <Redirect to={"/profile"}/> :
                 <Redirect to={"/login"}/>} </Route>
             <Route exact path="/social_Network_React/"> {isAuth ? <Redirect to={"/profile"}/> :
                 <Redirect to={"/login"}/>} </Route>
-
 
             <Route path="/profile/:userId?"> <Profile/> </Route>
             <React.Suspense fallback={<Preloader/>}>
