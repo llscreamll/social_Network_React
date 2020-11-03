@@ -1,2 +1,0 @@
-(this["webpackJsonpmy-site"]=this["webpackJsonpmy-site"]||[]).push([[7],{530:function(e,n,t){},542:function(e,n,t){"use strict";t.r(n),t.d(n,"default",(function(){return s}));var a=t(0),c=t.n(a),u=t(530),i=t.n(u);function s(){return c.a.createElement("div",{className:i.a.backgroundMusic},c.a.createElement("h1",null,"Music:"),c.a.createElement("p",null,"in the development..."))}}}]);
-//# sourceMappingURL=7.4d254b50.chunk.js.map
