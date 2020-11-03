@@ -35,7 +35,7 @@ const ProfileStatus: React.FC<PropsType> = (props) => {
         <>
             {!editMode &&
             <Card>
-                <span>Status:</span> <span onDoubleClick={activateMode}>{status || "Enter your status"}</span>
+                <span>Status:</span> <span onClick={activateMode}>{status || "Enter your status"}</span>
             </Card>
             }{editMode &&
         <form noValidate autoComplete="off">

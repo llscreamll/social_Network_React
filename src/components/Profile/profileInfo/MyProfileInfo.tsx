@@ -3,15 +3,40 @@ import Preloader from "../../Common/Reloader";
 import avatarImages from "../../images/avatar.jpg"
 import ProfileStatus from "../profileStatus/ProfileStatus";
 import ProfileDataFormRedux from "../ProfileDataForm/ProfileDataForm";
-import {Image} from 'antd';
 import {ProfileType} from "../../../types/types";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {savePhoto, saveProfile} from "../../../redux/profile-reducer";
-import {Button, Grid} from "@material-ui/core";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import {Grid} from "@material-ui/core";
 import ProfileData from "../pfofileData/ProfileData";
 import Typography from "@material-ui/core/Typography";
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+            },
+        },
+        input: {
+            display: 'none',
+        },
+        imageUser : {
+            width: '100%',
+            transitionProperty:'1s all initial'
+        },
+        '@media (max-width: 960px)':{
+            imageUser : {
+                width: 300
+            }
+        },
+
+    }),
+);
 
 
 type MyProfileInfoType = {
@@ -19,6 +44,7 @@ type MyProfileInfoType = {
 }
 
 let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
+    const classes = useStyles();
 
     const {profile, status} = useSelector((state: AppStateType) => state.profilePages)
     let [profiles, setProfiles] = useState(profile)
@@ -50,23 +76,22 @@ let MyProfileInfo: React.FC<MyProfileInfoType> = (props) => {
 
     return (
         <>
-            <Grid container>
+            <Grid container >
                 <Grid item
                       md={5}
                       sm={12}
                 >
-                    <Image
+                    <img
+                        className={classes.imageUser}
                         src={profiles?.photos?.large !== null ? profiles?.photos?.large as string : avatarImages}
-                        alt="img"
                     />
-
-
-                    <Button
-                        variant="contained"
-                        color="default"
-                        startIcon={<CloudUploadIcon/>}
-                    >
-                        {props.isOwner ? <input type={"file"} onChange={onMainPhotoSelector}/> : ""}</Button>
+                    {props.isOwner ? <> <input onChange={onMainPhotoSelector} accept="image/*" className={classes.input}
+                                               id="icon-button-file" type="file"/>
+                        <label htmlFor="icon-button-file">
+                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                <PhotoCamera/>
+                            </IconButton>
+                        </label> </> : ""}
                 </Grid>
 
                 <Grid container
