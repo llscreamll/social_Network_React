@@ -39,7 +39,7 @@ export function createField<FormKeysType extends string>(
     validators: Array<FieldValidatorType>,
     component: React.FC<WrappedFieldProps>,
     props: {} | undefined = {},
-    text: string | undefined = "") {
+    text: string | undefined = "",) {
     return (
         <div>
             <Field

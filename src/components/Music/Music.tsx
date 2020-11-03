@@ -45,7 +45,8 @@ export default function Music() {
 
     return (
         <>
-            in the development...
+            <Typography color={"primary"} variant={"h6"}>News:</Typography>
+                <Typography variant={"body2"}>in the development...</Typography>
             <Card className={classes.root}>
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
