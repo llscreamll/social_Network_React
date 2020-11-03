@@ -33,7 +33,6 @@ let App = () => {
             <AppHeader/>
 
             <Container maxWidth={"lg"}>
-
                 <Grid container>
                     <Grid direction="column"
                           xs={2}
