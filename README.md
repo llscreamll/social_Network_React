@@ -1,4 +1,3 @@
-Visual viewing: https://llscreamll.github.io/social_Network_React/
 
 Стэк: React,Redux,thunk,typeScript,formik Material-UI,react-router-dom
 
